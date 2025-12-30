@@ -10,12 +10,10 @@ class Tensor:
 
     def __init__(self, data):
         self.data = data
-        self.shape_array = []
-        #self.__is_valid()
+        self.shape_list = self.__get_shape(self.data)
         
     def shape(self):
-        self.__get_shape(self.data)
-        return self.shape_array
+        return self.shape_list
             
             
     def mul(self, value):
@@ -29,11 +27,18 @@ class Tensor:
         pass
     
     def __get_shape(self, data):
+        shape = []
+        
         if not is_list(data):
-            return
-        if is_list(data):
-            self.shape_array.append(len(data))
-            self.__get_shape(data[0])
+            return []
+        
+        if is_list(data) and data:
+            dim = len(data)
+            shape.append(dim)
+            shape.extend(self.__get_shape(data[0]))
+            return shape
+            
+        return []
         
     def __is_valid(self):
         raise ValueError("")     
