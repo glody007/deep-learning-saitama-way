@@ -9,3 +9,6 @@ def is_list(value):
 
 def is_float(value):
     return type(value) == float   
+
+def is_boolean(value):
+    return type(value) == bool
