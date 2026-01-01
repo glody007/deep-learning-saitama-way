@@ -65,6 +65,103 @@ def test_matmul():
     
     tensor_result_5 = tensor_6.matmul(tensor_7)
     assert tensor_result_5.to_data() == [[58, 64], [139, 154]]
+    
+    
+def test_add():
+    # vector addition
+    v1 = Tensor([1, 2, 3, 4])
+    v2 = Tensor([4, 3, 2, 1])
+
+    result_vec = v1.add(v2)
+    assert result_vec.to_data() == [5, 5, 5, 5]
+
+    # 4x4 matrix addition
+    m1 = Tensor([
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16]
+    ])
+
+    m2 = Tensor([
+        [16, 15, 14, 13],
+        [12, 11, 10, 9],
+        [8, 7, 6, 5],
+        [4, 3, 2, 1]
+    ])
+
+    result_mat = m1.add(m2)
+    assert result_mat.to_data() == [
+        [17, 17, 17, 17],
+        [17, 17, 17, 17],
+        [17, 17, 17, 17],
+        [17, 17, 17, 17]
+    ]
+
+
+def test_subs():
+    # vector subtraction
+    v1 = Tensor([10, 20, 30, 40])
+    v2 = Tensor([1, 2, 3, 4])
+
+    result_vec = v1.sub(v2)
+    assert result_vec.to_data() == [9, 18, 27, 36]
+
+    # 4x4 matrix subtraction
+    m1 = Tensor([
+        [20, 20, 20, 20],
+        [20, 20, 20, 20],
+        [20, 20, 20, 20],
+        [20, 20, 20, 20]
+    ])
+
+    m2 = Tensor([
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16]
+    ])
+
+    result_mat = m1.sub(m2)
+    assert result_mat.to_data() == [
+        [19, 18, 17, 16],
+        [15, 14, 13, 12],
+        [11, 10, 9, 8],
+        [7, 6, 5, 4]
+    ]
+
+
+def test_element_wise_multiplication():
+    # vector element-wise multiplication
+    v1 = Tensor([2, 3, 4, 5])
+    v2 = Tensor([5, 4, 3, 2])
+
+    result_vec = v1.multiply(v2)
+    assert result_vec.to_data() == [10, 12, 12, 10]
+
+    # 4x4 matrix element-wise multiplication
+    m1 = Tensor([
+        [1, 2, 3, 4],
+        [2, 3, 4, 5],
+        [3, 4, 5, 6],
+        [4, 5, 6, 7]
+    ])
+
+    m2 = Tensor([
+        [2, 2, 2, 2],
+        [3, 3, 3, 3],
+        [4, 4, 4, 4],
+        [5, 5, 5, 5]
+    ])
+
+    result_mat = m1.multiply(m2)
+    assert result_mat.to_data() == [
+        [2, 4, 6, 8],
+        [6, 9, 12, 15],
+        [12, 16, 20, 24],
+        [20, 25, 30, 35]
+    ]
+
 
 
 
