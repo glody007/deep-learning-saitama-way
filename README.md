@@ -89,8 +89,6 @@ The philosophy remains: **understand first, optimize later**.
 
 This repository covers **Phase I through Phase III**. Phase IV and beyond (alignment, evals, safety) will be implemented in separate repositories using PyTorch, as they require the scale and infrastructure that established frameworks provide.
 
----
-
 ## PHASE I — Foundations (Levels 1-4)
 
 ### Goal: Think like a neural network
@@ -118,8 +116,6 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 **Status:** ✅ In Progress - Basic tensor operations implemented
 
----
-
 ### Level 2 — Calculus for Learning
 
 **Manual Work:**
@@ -140,7 +136,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - Focus on understanding gradient flow
 
----
+
 
 ### Level 3 — Autograd Engine
 
@@ -160,7 +156,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - Implementation-focused level
 
----
+
 
 ### Level 4 — Tensors + Autograd
 
@@ -181,7 +177,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Automatic Differentiation in Machine Learning_ (Baydin et al.)
 
----
+
 
 ## PHASE II — Neural Networks (Levels 5-8)
 
@@ -206,7 +202,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Understanding LSTM Networks_ (Olah) - for intuition
 
----
+
 
 ### Level 6 — Losses & Training
 
@@ -227,7 +223,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Deep Learning_ (Goodfellow) - Optimization chapter
 
----
+
 
 ### Level 7 — Optimization
 
@@ -249,7 +245,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Adam: A Method for Stochastic Optimization_ (Kingma & Ba)
 
----
+
 
 ### Level 8 — Regularization
 
@@ -270,7 +266,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Dropout: A Simple Way to Prevent Neural Networks from Overfitting_ (Srivastava et al.)
 
----
+
 
 ## PHASE III — Attention & Transformers (Levels 9-14)
 
@@ -294,7 +290,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Recurrent Neural Network Regularization_ (Zaremba et al.)
 
----
+
 
 ### Level 10 — Attention
 
@@ -314,7 +310,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Attention Is All You Need_ (Vaswani et al.) - Core paper
 
----
+
 
 ### Level 11 — Multi-Head Attention
 
@@ -334,7 +330,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _The Annotated Transformer_ - Implementation guide
 
----
+
 
 ### Level 12 — Transformer Block
 
@@ -350,7 +346,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 - _Deep Residual Learning for Image Recognition_ (He et al.) - Residual connections
 - _Attention Is All You Need_ - Full architecture
 
----
+
 
 ### Level 13 — Language Modeling
 
@@ -370,7 +366,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Scaling Laws for Neural Language Models_ (Kaplan et al.) - Understanding scale
 
----
+
 
 ### Level 14 — Training at Scale (Conceptual)
 
@@ -392,7 +388,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 - _GPipe: Efficient Training of Giant Neural Networks_ - Pipeline parallelism
 - _FlashAttention: Fast and Memory-Efficient Exact Attention_ - Optimization techniques
 
----
+
 
 ## Current Status
 
@@ -419,7 +415,7 @@ This repository will **stop at Phase III (Level 14)**. Phase IV and beyond (alig
 
 The goal of this repository is to build **understanding** up to the transformer level. Beyond that, we leverage established frameworks while applying the deep understanding gained here.
 
----
+
 
 ## Getting Started
 
@@ -460,7 +456,7 @@ d = a.matmul(b)
 python -m pytest tests/
 ```
 
----
+
 
 ## Learning Path
 
@@ -469,7 +465,7 @@ python -m pytest tests/
 3. **Test your understanding**: Run the tests and verify correctness
 4. **Move to the next level**: Only proceed when you fully understand the current level
 
----
+
 
 ## Philosophy in Practice
 
@@ -484,7 +480,7 @@ Before moving to the next level, ask yourself:
 
 If you can't check all boxes, you're not ready for the next level. **That's okay.** Mastery takes time.
 
----
+
 
 ## Contributing
 
@@ -495,7 +491,7 @@ This is a personal learning project, but if you're following a similar path:
 3. Share insights, not just code
 4. Help others understand the fundamentals
 
----
+
 
 ## Resources
 
@@ -515,12 +511,12 @@ This is a personal learning project, but if you're following a similar path:
 - _Deep Learning_ (Goodfellow, Bengio, Courville)
 - _Neural Networks and Deep Learning_ (Nielsen)
 
----
+
 
 ## License
 
 This project is for educational purposes. Use it to learn, understand, and build your own understanding of deep learning.
 
----
+
 
 **Remember**: The goal isn't to build the fastest framework. The goal is to **understand** how deep learning works, from the ground up. The Saitama way: master the basics, and everything else follows.
