@@ -209,7 +209,7 @@ Neural intuition:
 This is the full forward pass of a dense layer.
 
 
-## 🔬 THINKING EXERCISES
+## THINKING EXERCISES
 
 Answer in writing:
 
