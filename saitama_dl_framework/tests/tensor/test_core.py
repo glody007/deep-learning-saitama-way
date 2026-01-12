@@ -97,6 +97,14 @@ def test_add():
         [17, 17, 17, 17],
         [17, 17, 17, 17]
     ]
+    
+def test___add__():
+    # vector addition with operator +
+    v1 = Tensor([1, 2, 3, 4])
+    v2 = Tensor([4, 3, 2, 1])
+
+    result_vec = v1 + v2
+    assert result_vec.to_data() == [5, 5, 5, 5]
 
 
 def test_subs():
@@ -130,6 +138,13 @@ def test_subs():
         [7, 6, 5, 4]
     ]
 
+def test___subs__():
+    # vector subtraction with operator -
+    v1 = Tensor([10, 20, 30, 40])
+    v2 = Tensor([1, 2, 3, 4])
+
+    result_vec = v1 - v2
+    assert result_vec.to_data() == [9, 18, 27, 36]
 
 def test_element_wise_multiplication():
     # vector element-wise multiplication
@@ -163,7 +178,13 @@ def test_element_wise_multiplication():
     ]
 
 
+def test_element_wise_multiplication():
+    # vector element-wise multiplication with operator *
+    v1 = Tensor([2, 3, 4, 5])
+    v2 = Tensor([5, 4, 3, 2])
 
+    result_vec = v1 * v2
+    assert result_vec.to_data() == [10, 12, 12, 10]
 
 
     

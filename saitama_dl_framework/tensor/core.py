@@ -71,6 +71,15 @@ class Tensor:
             tensor_2,
             lambda a, b: a * b
         )
+        
+    def __add__(self, tensor_2):
+        return self.add(tensor_2)
+    
+    def __sub__(self, tensor_2):
+        return self.sub(tensor_2)
+    
+    def __mul__(self, tensor_2):
+        return self.multiply(tensor_2)
     
     def _get_shape(self, data):
         shape = []
