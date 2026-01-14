@@ -1,12 +1,23 @@
 
+class Accumulated():
+    node = None
+    
+    def __init__(self, node):
+        self.node = node
+    
+    def apply(self, grad):
+        self.node.set_grad(grad)
 
-class Mul():
+
+class MultiBackward():
+    next_functions = None
     
-    def __init__(self, node_A, ):
-        pass
+    def __init__(self, next_functions):
+        self.next_functions
+
+
+class AddBackward():
+    next_functions = []
     
-    
-class Add():
-    
-    def __init__(self, tensor_A, tensor_B):
-        pass
+    def __init__(self, next_functions):
+        self.next_functions
