@@ -1,18 +1,19 @@
 import copy
 from tensor.utils import is_list
 
-
 class Tensor:
     
     grad = None
     grad_fn = None
     is_leaf = True
+    required_grad = True
 
-    def __init__(self, data, is_leaf=True, grad_fn=None):
+    def __init__(self, data, is_leaf=True, grad_fn=None, required_grad=True):
         self.data = copy.deepcopy(data)
         self.shape_list = self._get_shape(self.data)
         self.is_leaf = is_leaf
         self.grad_fn = grad_fn
+        self.required_grad = required_grad
         
     def shape(self):
         return self.shape_list
@@ -57,11 +58,11 @@ class Tensor:
         return Tensor(matrix_C_data)
 
         
-    def add(self, tensor_2):        
+    def add(self, tensor_2):       
         return Tensor._element_wise_operation(
             self,
             tensor_2,
-            lambda a, b: a + b
+            lambda a, b: a + b,
         )
     
     def sub(self, tensor_2):
@@ -102,7 +103,7 @@ class Tensor:
         return [] 
     
     # operation is function that takes two elements and apply the operation
-    def _element_wise_operation(tensor_1, tensor_2, operation):
+    def _element_wise_operation(tensor_1, tensor_2, operation, grad_fn):
         matrix_A_data = tensor_1.to_data()
         matrix_B_data = tensor_2.to_data()
         
@@ -130,7 +131,7 @@ class Tensor:
         if tensor_1._is_vector():
             matrix_C_data = matrix_C_data[0]
 
-        return Tensor(matrix_C_data, is_leaf=False)
+        return Tensor(matrix_C_data, is_leaf=False, grad_fn=grad_fn)
     
     def _is_scalar(self):
         if self.shape_list:

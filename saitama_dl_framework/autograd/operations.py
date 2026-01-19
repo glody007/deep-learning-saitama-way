@@ -21,3 +21,9 @@ class AddBackward():
     
     def __init__(self, next_functions):
         self.next_functions
+        
+class SubBackward():
+    next_functions = []
+    
+    def __init__(self, next_functions):
+        self.next_functions
