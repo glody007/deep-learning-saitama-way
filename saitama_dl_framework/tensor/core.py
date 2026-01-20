@@ -1,6 +1,7 @@
 import copy
 from tensor.utils import is_list
-
+from autograd.graph import build_node_backward
+from autograd import operations
 class Tensor:
     
     grad = None
@@ -58,25 +59,31 @@ class Tensor:
         return Tensor(matrix_C_data)
 
         
-    def add(self, tensor_2):       
+    def add(self, tensor_2):   
+        grad_fn = build_node_backward(self, tensor_2, operation=operations.ADD)
         return Tensor._element_wise_operation(
             self,
             tensor_2,
             lambda a, b: a + b,
+            grad_fn=grad_fn
         )
     
     def sub(self, tensor_2):
+        grad_fn = build_node_backward(self, tensor_2, operation=operations.SUB)
         return Tensor._element_wise_operation(
             self,
             tensor_2,
-            lambda a, b: a - b
+            lambda a, b: a - b,
+            grad_fn=grad_fn
         )
         
     def multiply(self, tensor_2):
+        grad_fn = build_node_backward(self, tensor_2, operation=operations.MUL)
         return Tensor._element_wise_operation(
             self,
             tensor_2,
-            lambda a, b: a * b
+            lambda a, b: a * b, 
+            grad_fn=grad_fn
         )
         
     def __add__(self, tensor_2):
