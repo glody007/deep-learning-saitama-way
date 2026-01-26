@@ -13,17 +13,17 @@ class MultiBackward():
     next_functions = None
     
     def __init__(self, next_functions):
-        self.next_functions
+        self.next_functions = next_functions
 
 
 class AddBackward():
     next_functions = []
     
     def __init__(self, next_functions):
-        self.next_functions
+        self.next_functions = next_functions
         
 class SubBackward():
     next_functions = []
     
     def __init__(self, next_functions):
-        self.next_functions
+        self.next_functions = next_functions

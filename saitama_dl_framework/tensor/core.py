@@ -1,7 +1,6 @@
 import copy
 from tensor.utils import is_list
-from autograd.graph import build_node_backward
-from autograd import operations
+from autograd import operations, backward
 class Tensor:
     
     grad = None
@@ -155,3 +154,31 @@ class Tensor:
             return True
         return False
             
+            
+def build_node_backward(nodeA, nodeB, operation):
+    next_functions = []
+    if isinstance(nodeA, Tensor):
+        if nodeA.is_leaf:
+            next_functions.append((backward.Accumulated(nodeA), 0))
+            
+        elif nodeA.grad_fn:
+            next_functions.append((nodeA.grad_fn, 0))
+    
+    if isinstance(nodeB, Tensor):
+        if nodeB.is_leaf:
+            next_functions.append((backward.Accumulated(nodeB), 0))
+        
+        elif nodeB.grad_fn:
+            next_functions.append((nodeB.grad_fn, 0))
+            
+    
+    if operation == operations.ADD:
+        return backward.AddBackward(next_functions)
+    
+    if operation == operations.SUB:
+        return backward.SubBackward(next_functions)
+    
+    if operation == operations.MUL:
+        return backward.MultiBackward(next_functions)
+    
+    raise ValueError("Invalid operation")
