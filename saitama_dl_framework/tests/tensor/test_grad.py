@@ -85,5 +85,9 @@ def test__graph_construction__():
     assert grad_fn_mul1.next_functions[0][0].node == v1
     assert grad_fn_mul1.next_functions[1][0].node == v2
     
+    assert isinstance(grad_merge_branch, backward.AddBackward)
+    assert isinstance(grad_merge_branch.next_functions[0][0], backward.MultiBackward)
+    assert isinstance(grad_merge_branch.next_functions[1][0], backward.MultiBackward)
+    
     
     
