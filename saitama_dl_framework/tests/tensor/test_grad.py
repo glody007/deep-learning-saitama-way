@@ -90,4 +90,13 @@ def test__graph_construction__():
     assert isinstance(grad_merge_branch.next_functions[1][0], backward.MultiBackward)
     
     
+def test__backward_base_operations__():
+    v1 = Tensor([2])
+    v2 = Tensor([1])
     
+    simple_add = v1 + v2
+    
+    simple_add.backward()
+    
+    assert v1.grad.to_data() == [1]
+    assert v2.grad.to_data() == [1]

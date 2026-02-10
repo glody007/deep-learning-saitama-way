@@ -20,6 +20,9 @@ class Tensor:
     
     def to_data(self):
         return copy.deepcopy(self.data)
+    
+    def set_grad(self, grad):
+        self.grad = grad
             
             
     def multiply(self, tensor_2):
@@ -84,6 +87,24 @@ class Tensor:
             lambda a, b: a * b, 
             grad_fn=grad_fn
         )
+        
+    def backward(self, parent_grad=None):
+        if parent_grad == None:
+            parent_grad = Tensor([1])
+            
+        if self.grad_fn:
+            for next_function in self.grad_fn.next_functions:
+                if isinstance(next_function[0], backward.Accumulated):
+                    next_function[0].apply(parent_grad)
+                
+                
+                
+               
+                    
+                
+            
+            
+            
         
     def __add__(self, tensor_2):
         return self.add(tensor_2)
