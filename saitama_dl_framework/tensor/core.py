@@ -93,17 +93,7 @@ class Tensor:
             parent_grad = Tensor([1])
             
         if self.grad_fn:
-            for next_function in self.grad_fn.next_functions:
-                if isinstance(next_function[0], backward.Accumulated):
-                    next_function[0].apply(parent_grad)
-                
-                
-                
-               
-                    
-                
-            
-            
+            self.grad_fn.backward(parent_grad)            
             
         
     def __add__(self, tensor_2):
@@ -178,6 +168,7 @@ class Tensor:
             
 def build_node_backward(nodeA, nodeB, operation):
     next_functions = []
+    saved_tensors = [nodeA, nodeB]
     if isinstance(nodeA, Tensor):
         if nodeA.is_leaf:
             next_functions.append((backward.Accumulated(nodeA), 0))
@@ -194,12 +185,12 @@ def build_node_backward(nodeA, nodeB, operation):
             
     
     if operation == operations.ADD:
-        return backward.AddBackward(next_functions)
+        return backward.AddBackward(next_functions, saved_tensors)
     
     if operation == operations.SUB:
-        return backward.SubBackward(next_functions)
+        return backward.SubBackward(next_functions, saved_tensors)
     
     if operation == operations.MUL:
-        return backward.MultiBackward(next_functions)
+        return backward.MultiBackward(next_functions, saved_tensors)
     
     raise ValueError("Invalid operation")

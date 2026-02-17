@@ -93,6 +93,8 @@ def test__graph_construction__():
 def test__backward_base_operations__():
     v1 = Tensor([2])
     v2 = Tensor([1])
+    v3 = Tensor([6])
+    v4 = Tensor([4])
     
     simple_add = v1 + v2
     
@@ -100,3 +102,9 @@ def test__backward_base_operations__():
     
     assert v1.grad.to_data() == [1]
     assert v2.grad.to_data() == [1]
+    
+    simple_mul = v3 * v4
+    simple_mul.backward()
+    
+    assert v3.grad.to_data() == [4]
+    assert v4.grad.to_data() == [6]
