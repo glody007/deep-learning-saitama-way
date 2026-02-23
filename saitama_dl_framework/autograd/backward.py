@@ -6,8 +6,10 @@ class Accumulated():
         self.node = node
     
     def backward(self, grad):
-        self.node.set_grad(grad)
-
+        if self.node.grad == None:
+            self.node.set_grad(grad)
+        else: 
+            self.node.set_grad(self.node.grad + grad)
 
 class MultiBackward():
     next_functions = []

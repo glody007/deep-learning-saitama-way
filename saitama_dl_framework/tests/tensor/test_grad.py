@@ -113,8 +113,8 @@ def test__backward_base_operations__():
     add_and_mul = simple_add * simple_mul
     add_and_mul.backward()
     
-    assert v1.grad.to_data() == [24]
-    assert v2.grad.to_data() == [24]
-    assert v3.grad.to_data() == [12]
-    assert v4.grad.to_data() == [18]
+    assert v1.grad.to_data() == [25]
+    assert v2.grad.to_data() == [25]
+    assert v3.grad.to_data() == [16]
+    assert v4.grad.to_data() == [24]
     
