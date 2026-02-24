@@ -22,7 +22,16 @@ class Tensor:
         return copy.deepcopy(self.data)
     
     def set_grad(self, grad):
-        self.grad = grad
+        self.grad = Tensor(grad.to_data())
+        
+    def zero_(self):        
+        if self._is_matrix():
+            for i, _ in enumerate(self.data):
+                for j, _ in enumerate(self.data[0]):
+                    self.data[i][j] = 0      
+        else:
+            for i, _ in enumerate(self.data):
+                self.data[i] = 0
             
             
     def multiply(self, tensor_2):
