@@ -1,4 +1,4 @@
-from tensor.core import Tensor    
+from saitama_dl.tensor.core import Tensor    
     
 def test_shape():
     scalar_shape = Tensor(1).shape()

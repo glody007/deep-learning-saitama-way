@@ -1,4 +1,4 @@
-from tensor.core import Tensor  
+from saitama_dl.tensor.core import Tensor  
 
 def test__zero_simple():
     v1 = Tensor([2])

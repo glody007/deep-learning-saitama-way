@@ -1,4 +1,4 @@
-from tensor.utils import (
+from saitama_dl.tensor.utils import (
     is_int, 
     is_float, 
     is_list,

@@ -1,6 +1,8 @@
 import copy
-from tensor.utils import is_list
-from autograd import operations, backward
+from .utils import is_list
+from saitama_dl.autograd import operations, backward
+import saitama_dl as sdl
+
 class Tensor:
     
     grad = None
@@ -71,7 +73,11 @@ class Tensor:
 
         
     def add(self, tensor_2):   
-        grad_fn = build_node_backward(self, tensor_2, operation=operations.ADD)
+        grad_fn = None
+        
+        if sdl._tracking_grad_enabled:
+            grad_fn = build_node_backward(self, tensor_2, operation=operations.ADD)
+            
         return Tensor._element_wise_operation(
             self,
             tensor_2,
@@ -80,7 +86,10 @@ class Tensor:
         )
     
     def sub(self, tensor_2):
-        grad_fn = build_node_backward(self, tensor_2, operation=operations.SUB)
+        grad_fn = None
+        if sdl._tracking_grad_enabled:
+            grad_fn = build_node_backward(self, tensor_2, operation=operations.SUB)
+        
         return Tensor._element_wise_operation(
             self,
             tensor_2,
@@ -89,7 +98,11 @@ class Tensor:
         )
         
     def multiply(self, tensor_2):
-        grad_fn = build_node_backward(self, tensor_2, operation=operations.MUL)
+        grad_fn = None
+        
+        if sdl._tracking_grad_enabled:
+            grad_fn = build_node_backward(self, tensor_2, operation=operations.MUL)
+            
         return Tensor._element_wise_operation(
             self,
             tensor_2,

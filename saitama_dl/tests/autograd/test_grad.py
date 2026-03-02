@@ -1,5 +1,5 @@
-from tensor.core import Tensor  
-from autograd import backward
+from saitama_dl.tensor.core import Tensor  
+from saitama_dl.autograd import backward
 
 def test___add__():
     v1 = Tensor([1, 2, 3, 4])
