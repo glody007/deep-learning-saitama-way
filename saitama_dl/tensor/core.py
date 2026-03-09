@@ -27,13 +27,16 @@ class Tensor:
         self.grad = Tensor(grad.to_data())
         
     def zero_(self):        
+        self.fill(0)
+                
+    def fill(self, number):
         if self._is_matrix():
             for i, _ in enumerate(self.data):
                 for j, _ in enumerate(self.data[0]):
-                    self.data[i][j] = 0      
+                    self.data[i][j] = number     
         else:
             for i, _ in enumerate(self.data):
-                self.data[i] = 0
+                self.data[i] = number
             
             
     def multiply(self, tensor_2):
