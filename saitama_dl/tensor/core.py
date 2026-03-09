@@ -28,6 +28,7 @@ class Tensor:
         
     def zero_(self):        
         self.fill(0)
+        return self
                 
     def fill(self, number):
         if self._is_matrix():
@@ -38,6 +39,7 @@ class Tensor:
             for i, _ in enumerate(self.data):
                 self.data[i] = number
             
+        return self
             
     def multiply(self, tensor_2):
         if not is_list(self.data):
@@ -115,7 +117,7 @@ class Tensor:
         
     def backward(self, parent_grad=None):
         if parent_grad == None:
-            parent_grad = Tensor([1])
+            parent_grad = Tensor(self.to_data()).fill(1)
             
         if self.grad_fn:
             self.grad_fn.backward(parent_grad)            
