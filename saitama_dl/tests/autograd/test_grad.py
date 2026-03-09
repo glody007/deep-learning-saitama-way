@@ -118,3 +118,21 @@ def test__backward_base_operations__():
     assert v3.grad.to_data() == [16]
     assert v4.grad.to_data() == [24]
     
+def test__backward_base_operations__multi_element():
+    v1 = Tensor([4, 5, 2])
+    v2 = Tensor([1, 2, 3])
+    
+    simple_add = v1 + v2
+    simple_add.backward()
+    
+    assert v1.grad.to_data() == [1, 1, 1]
+    assert v2.grad.to_data() == [1, 1, 1]
+    
+    v3 = Tensor([4, 5, 2])
+    v4 = Tensor([1, 2, 3])
+    
+    simple_mul = v3 * v4
+    simple_mul.backward()
+    
+    assert v3.grad.to_data() == [1, 2, 3]
+    assert v4.grad.to_data() == [4, 5, 2]
