@@ -47,21 +47,18 @@ Deep learning frameworks like PyTorch and TensorFlow are powerful, but they abst
 
 ```
 deep-learning-saitama-way/
-├── saitama_dl_framework/     # Core framework implementation
-│   ├── tensor/               # Tensor operations (Level 1)
-│   ├── autograd/             # Automatic differentiation (Levels 2-4)
-│   ├── nn/                   # Neural network primitives (Levels 5-6)
-│   ├── optim/                # Optimizers (Level 7)
-│   ├── regularization/       # Regularization techniques (Level 8)
-│   ├── attention/            # Attention mechanisms (Levels 9-11)
-│   ├── transformer/          # Transformer architecture (Levels 12-13)
-│   └── training/             # Training utilities (Level 14)
+├── saitama_dl/               # Core package (pure Python)
+│   ├── tensor/               # Tensor operations (Level 1) ✅
+│   ├── autograd/             # Autograd (Levels 2–3) ✅; Level 4 partial
+│   ├── example/              # Small demos (e.g. training loop)
+│   └── tests/                # `pytest` targets this tree
 ├── exercises/                # Manual exercises and theory
 │   ├── 01_linear_algebra_computation.md
 │   └── ...                   # Additional exercise files
-├── tests/                    # Unit tests for each component
 └── README.md                 # This file
 ```
+
+Planned later (curriculum): `nn/`, `optim/`, `regularization/`, `attention/`, `transformer/`, `training/`.
 
 ## Language Strategy
 
@@ -114,7 +111,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - Focus on mathematical foundations
 
-**Status:** ✅ In Progress - Basic tensor operations implemented
+**Status:** ✅ Done — core `Tensor` (shape, `add` / `sub` / `multiply`, `matmul`); tests in `saitama_dl/tests/tensor/`.
 
 ### Level 2 — Calculus for Learning
 
@@ -136,7 +133,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - Focus on understanding gradient flow
 
-
+**Status:** ✅ Done — gradients on leaves via `.grad` / `set_grad`, `backward()` through compositions built from element-wise ops (covers forms like `y = ax + b`, `y = x²` when expressed with `+`, `-`, `*`).
 
 ### Level 3 — Autograd Engine
 
@@ -156,7 +153,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - Implementation-focused level
 
-
+**Status:** ✅ Done — reverse-mode graph on `Tensor` (`backward()`, `grad_fn` chain); `no_grad` context; tests in `saitama_dl/tests/autograd/` and `saitama_dl/tests/no_grad/`. (Separate `Value` type not used; autograd is integrated on `Tensor`.)
 
 ### Level 4 — Tensors + Autograd
 
@@ -177,7 +174,7 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 - _Automatic Differentiation in Machine Learning_ (Baydin et al.)
 
-
+**Status:** 🟡 In progress — element-wise autograd is in place; **`matmul` has no autograd yet**; **`sum` / `mean` / `reshape` (and full broadcasting-through-grad) still to do** before this level matches the curriculum.
 
 ## PHASE II — Neural Networks (Levels 5-8)
 
@@ -394,16 +391,13 @@ This repository covers **Phase I through Phase III**. Phase IV and beyond (align
 
 ### Implemented
 
-- **Level 1 (Partial)**: Basic `Tensor` class with:
-  - Shape tracking
-  - Element-wise operations (`add`, `sub`, `multiply`)
-  - Matrix multiplication (`matmul`)
-  - Support for scalars, vectors, and matrices
+- **Level 1** ✅: `Tensor` — shape tracking; element-wise `add`, `sub`, `multiply`; `matmul`; scalars, vectors, matrices; tests under `saitama_dl/tests/tensor/`.
+- **Levels 2–3** ✅: Autograd on `Tensor` for element-wise `+`, `-`, `*`; `backward()`; `no_grad`; tests under `saitama_dl/tests/autograd/` and `saitama_dl/tests/no_grad/`.
+- **Demo**: `saitama_dl/example/simple_loop.py` — tiny linear regression loop using autograd (not full Phase II `nn` yet).
 
-### In Progress
+### In progress
 
-- Completing Level 1 exercises and tests
-- Preparing for Level 2 (Calculus for Learning)
+- **Level 4**: `matmul` autograd; `sum` / `mean` / `reshape`; richer broadcasting in gradients (see Level 4 status above).
 
 ### Repository Scope
 
@@ -439,7 +433,7 @@ cd deep-learning-saitama-way
 ### Usage
 
 ```python
-from saitama_dl_framework.tensor import Tensor
+from saitama_dl.tensor.core import Tensor
 
 # Create tensors
 a = Tensor([[1, 2], [3, 4]])
@@ -453,7 +447,7 @@ d = a.matmul(b)
 ### Running Tests
 
 ```bash
-python -m pytest tests/
+python3 -m pytest saitama_dl/tests/ -q
 ```
 
 
